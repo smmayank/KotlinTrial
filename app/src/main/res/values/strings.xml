@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KotlinTrial</string>
+
+    <!--home page begin-->
+    <string name="home_page_title">Home</string>
+    <!--home page end-->
+
+    <!--home list begin-->
+    <string name="home_list_title">List</string>
+    <!--home list end-->
 </resources>
