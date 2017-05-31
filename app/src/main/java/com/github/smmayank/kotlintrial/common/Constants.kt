@@ -1,4 +1,4 @@
-package com.github.smmayank.kotlintrial.base.common
+package com.github.smmayank.kotlintrial.common
 
 import android.support.annotation.IdRes
 

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import com.github.smmayank.kotlintrial.base.common.Constants.INVALID_RESOURCE
+import com.github.smmayank.kotlintrial.common.Constants.INVALID_RESOURCE
 
 /**
  * @author Mayank Saxena
