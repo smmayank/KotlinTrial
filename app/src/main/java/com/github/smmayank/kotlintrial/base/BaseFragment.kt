@@ -46,10 +46,16 @@ abstract class BaseFragment : Fragment() {
 
     fun setTitle(title: CharSequence?) = interactionListener?.setTitle(title)
 
+    fun replace(fragment: Fragment?,
+            attToStack: Boolean = true) = interactionListener?.replace(fragment, attToStack)
+
+    fun add(fragment: Fragment?,
+            attToStack: Boolean = true) = interactionListener?.add(fragment, attToStack)
+
 
     interface InteractionListener {
         fun setTitle(title: CharSequence?)
-        fun replace(fragment: Fragment?)
-        fun add(fragment: Fragment?)
+        fun replace(fragment: Fragment?, attToStack: Boolean = true)
+        fun add(fragment: Fragment?, attToStack: Boolean = true)
     }
 }

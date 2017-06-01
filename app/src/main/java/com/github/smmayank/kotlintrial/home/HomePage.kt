@@ -13,6 +13,6 @@ class HomePage : BaseActivity() {
 
     override fun getFragmentContainerId(): Int = R.id.home_page_fragment_container
 
-    override fun afterLayout() = add(HomeList.init())
+    override fun afterLayout() = add(HomeList.init(), false)
 
 }

@@ -25,35 +25,39 @@ abstract class BaseActivity : AppCompatActivity(), BaseFragment.InteractionListe
     }
 
     override final fun onBackPressed() {
-        val fragment = getCurrentFragment()
-        if (fragment?.backHandled()!!) {
-            return
+        if (getCurrentFragment()?.backHandled()?.not() ?: true) {
+            super.onBackPressed()
         }
-        super.onBackPressed()
     }
 
     private fun getCurrentFragment(): BaseFragment? {
         return supportFragmentManager.findFragmentById(getFragmentContainerId()) as BaseFragment?
     }
 
-    override final fun replace(fragment: Fragment?) {
+    override final fun replace(fragment: Fragment?, attToStack: Boolean) {
         val containerId = getFragmentContainerId()
         if (containerId == INVALID_RESOURCE) {
             return
         }
-        supportFragmentManager.beginTransaction()
-                .replace(containerId, fragment)
-                .commitAllowingStateLoss()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(containerId, fragment)
+        if (attToStack) {
+            transaction.addToBackStack(null)
+        }
+        transaction.commitAllowingStateLoss()
     }
 
-    override fun add(fragment: Fragment?) {
+    override fun add(fragment: Fragment?, attToStack: Boolean) {
         val containerId = getFragmentContainerId()
         if (containerId == INVALID_RESOURCE) {
             return
         }
-        supportFragmentManager.beginTransaction()
-                .add(containerId, fragment)
-                .commitAllowingStateLoss()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(containerId, fragment)
+        if (attToStack) {
+            transaction.addToBackStack(null)
+        }
+        transaction.commitAllowingStateLoss()
     }
 
     fun setToolbar(@IdRes toolbarId: Int) {
