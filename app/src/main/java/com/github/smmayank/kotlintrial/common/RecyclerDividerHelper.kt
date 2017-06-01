@@ -22,6 +22,7 @@ object RecyclerDividerHelper {
     val FLAG_DIVIDER_MIDDLE = 0x0100
 
     val FLAG_DEFAULT = FLAG_DIVIDER_MIDDLE or FLAG_DIVIDER_END
+    val FLAG_ALL = FLAG_DIVIDER_START or FLAG_DIVIDER_MIDDLE or FLAG_DIVIDER_END
 
 
     enum class DividerType {
@@ -158,8 +159,8 @@ object RecyclerDividerHelper {
             val rect = Rect()
             rect.left = child?.left ?: 0
             rect.right = child?.right ?: 0
-            rect.top = child?.top ?: 0
-            rect.bottom = child?.top?.plus(dividerDimen) ?: 0
+            rect.bottom = child?.top ?: 0
+            rect.top = child?.top?.minus(dividerDimen) ?: 0
             canvas?.drawRect(rect, paint)
         }
 
@@ -171,8 +172,8 @@ object RecyclerDividerHelper {
             val rect = Rect()
             rect.left = child?.left ?: 0
             rect.right = child?.right ?: 0
-            rect.bottom = child?.bottom ?: 0
-            rect.top = child?.bottom?.minus(dividerDimen) ?: 0
+            rect.top = child?.bottom ?: 0
+            rect.bottom = child?.bottom?.plus(dividerDimen) ?: 0
             canvas?.drawRect(rect, paint)
         }
     }
