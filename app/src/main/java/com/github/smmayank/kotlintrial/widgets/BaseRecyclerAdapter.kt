@@ -1,21 +1,29 @@
 package com.github.smmayank.kotlintrial.widgets
 
+import android.content.Context
+import android.support.annotation.LayoutRes
+import android.support.v7.widget.RecyclerView.Adapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import java.util.*
+
 /**
  * @author Mayank Saxena
  * @version 1.0
  * @since 2017-05-31
  */
-abstract class BaseRecyclerAdapter<Item : BaseRecyclerItem,
-        Holder : BaseRecyclerViewHolder<Item>>(context: android.content.Context?) : android.support.v7.widget.RecyclerView.Adapter<Holder>() {
+abstract class BaseRecyclerAdapter<Item : BaseRecyclerItem, Holder : BaseRecyclerViewHolder<Item>>(
+        context: Context?) : Adapter<Holder>() {
 
-    private val inflater: android.view.LayoutInflater? = android.view.LayoutInflater.from(context)
+    private val inflater: LayoutInflater? = LayoutInflater.from(context)
 
-    val itemList = java.util.LinkedList<Item>()
+    val itemList = LinkedList<Item>()
 
     override final fun getItemCount(): Int = itemList.size
 
-    override final fun onCreateViewHolder(parent: android.view.ViewGroup?,
-            viewType: Int): Holder = createHolder(parent, viewType)
+    override final fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder =
+            createHolder(parent, viewType)
 
     override final fun onBindViewHolder(holder: Holder?, position: Int) {
         holder?.updateData(itemList[position])
@@ -24,13 +32,14 @@ abstract class BaseRecyclerAdapter<Item : BaseRecyclerItem,
     override final fun getItemViewType(position: Int): Int = itemList[position].getType()
 
     fun addItems(vararg items: Item) {
+        val lastIndex = itemList.lastIndex
         itemList += items
-        notifyDataSetChanged()
+        notifyItemInserted(lastIndex)
     }
 
-    fun inflate(parent: android.view.ViewGroup?, @android.support.annotation.LayoutRes layoutId: Int): android.view.View? {
+    fun inflate(parent: ViewGroup?, @LayoutRes layoutId: Int): View? {
         return inflater?.inflate(layoutId, parent, false)
     }
 
-    abstract fun createHolder(parent: android.view.ViewGroup?, viewType: Int): Holder
+    abstract fun createHolder(parent: ViewGroup?, viewType: Int): Holder
 }
