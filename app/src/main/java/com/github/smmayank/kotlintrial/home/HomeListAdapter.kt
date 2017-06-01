@@ -13,7 +13,7 @@ import com.github.smmayank.kotlintrial.widgets.BaseRecyclerAdapter
 class HomeListAdapter(context: Context?) :
         BaseRecyclerAdapter<HomeListItem, HomeListDataHolder>(context) {
 
-    private val layoutId = R.layout.support_simple_spinner_dropdown_item
+    private val layoutId = R.layout.home_list_item
 
     override fun createHolder(parent: ViewGroup?, viewType: Int): HomeListDataHolder {
         return HomeListDataHolder(inflate(parent, layoutId))
